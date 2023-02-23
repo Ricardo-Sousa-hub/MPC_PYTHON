@@ -3,3 +3,4 @@
 ricardo sousa, 1705109
 
 engenharia informatica, inteligencia artificial
+![alt text](./images/ia.png)
