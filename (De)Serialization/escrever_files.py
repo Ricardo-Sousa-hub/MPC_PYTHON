@@ -1,4 +1,4 @@
-f = open("./files/outputdemo1.txt", "w",encoding='utf8')
+f = open("files/outputdemo1.txt", "w", encoding='utf8')
 x="Mais de mil cidades e aldeias em toda a Ucrânia continuam " \
   "\nsem electricidade por causa dos ataques russos dos últimos dias, " \
   "\ndizem responsáveis ucranianos citados pela BBC. Os ataques tiveram como " \

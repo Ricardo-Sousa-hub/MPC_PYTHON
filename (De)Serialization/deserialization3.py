@@ -7,6 +7,6 @@ def identity(n):
 
 
 # Deserialization
-reconstructed = pickle.load(open('./files/outputser3', 'rb'))
+reconstructed = pickle.load(open('files/outputser3', 'rb'))
 print(reconstructed(10))
 # print(reconstructed)
