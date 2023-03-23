@@ -8,8 +8,7 @@ print(s.pow(x%150,y%10))  # Returns 2**3 = 8
 print(s.add(x,y))  # Returns 5
 print(s.mul(x,y))  # Returns 5*2 = 10
 print(s.ia())
-lista = s.tabuada(x)
-for i in range(len(lista)):
-    print(lista[i])
+tabuada = s.tabuada(x)
+print(tabuada)
 # Print list of available methods
 print(s.system.listMethods())
