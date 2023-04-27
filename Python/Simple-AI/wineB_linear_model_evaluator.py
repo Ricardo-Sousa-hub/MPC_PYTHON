@@ -8,7 +8,7 @@ import array as arr
 import os
 import pickle as p1
 
-data = pd.read_csv("./Qualidade_vinho_B/winequality-white.csv",sep=";")
+data = pd.read_csv("Qualidade_vinho_B/winequality-white.csv", sep=";")
 evaluation_data=data[1001:]
 data_X=evaluation_data.iloc[:,0:11]
 data_Y=evaluation_data.iloc[:,11:12]
@@ -16,7 +16,7 @@ print(type(evaluation_data))
 print(data_X)
 
 
-loaded_model = p1.load(open('./white-wine_quality_predictor', 'rb'))
+loaded_model = p1.load(open('white-wine_quality_predictor', 'rb'))
 print("Coefficients: \n", loaded_model.coef_)
 
 y_pred=loaded_model.predict(data_X)

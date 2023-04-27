@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 
-data = pd.read_csv("./Qualidade_vinho_B/winequality-white.csv",sep=";")
+data = pd.read_csv("Qualidade_vinho_B/winequality-white.csv", sep=";")
 train_data=data[:1000]
 data_X=train_data.iloc[:,0:11]
 data_Y=train_data.iloc[:,11:12]
@@ -18,7 +18,7 @@ print(data_Y)
 
 regr = linear_model.LinearRegression()
 preditor_linear_model=regr.fit(data_X, data_Y)
-preditor_Pickle = open('./white-wine_quality_predictor', 'wb')
+preditor_Pickle = open('white-wine_quality_predictor', 'wb')
 print("white-wine_quality_predictor")
 p1.dump(preditor_linear_model, preditor_Pickle)
 
