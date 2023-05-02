@@ -3,11 +3,11 @@ import threading
 #import wikipedia
 
 IP = socket.gethostbyname(socket.gethostname())
-PORT =5566
+PORT =5568
 ADDR=(IP,PORT)
 SIZE=1024
 FORMAT="utf-8"
-DISCONNECT_MSG="!DISCONNECT"
+DISCONNECT_MSG="Disconnected!"
 
 def handle_client(conn,addr):
     print(f"[NEW CONNECTION]")
