@@ -11,4 +11,4 @@ engenharia informatica, inteligencia artificial
 
 
 ## Implementação
-![alt text](./images/arquitetura.svg)
+![alt text](./images/Arquitetura.svg)
