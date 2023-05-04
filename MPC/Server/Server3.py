@@ -1,41 +1,43 @@
-# Server 3
-
 import socket
 import threading
 
-ip = socket.gethostbyname(socket.gethostname())
-port = 6003
-ADDR = (ip, port)
-size = 1024
-format = "utf-8"
-deconn = "Disconnected!"
-connected = True
+IP = socket.gethostbyname(socket.gethostname())
+PORT = 8003
+ADDR = (IP, PORT)
+SIZE = 1024
+FORMAT = "utf-8"
+server_status = False
 
 
-def handle_client(conn, addr):
-    print(f"[NEW CONNECTION]")
-    connected = True
-    while connected:
-        msg = conn.recv(size).decode(format)
-        if msg == deconn:
-            connected = False
-        print(f"[{addr}]{msg}")
-        msg = f"Msg received: {msg}"
-        conn.send(msg.encode(format))
+def handle_other_server(conn, addr):
+    print("New Connection...")
+    connectedToServer1 = False
+    connectedToServer2 = False
+    if addr[1] == 8001:
+        connectedToServer1 = True
+        print("Connection to server 1 established...")
+    if addr[1] == 8002:
+        connectedToServer2 = True
+        print("Connection to server 2 established...")
 
-    conn.close()
+    while connectedToServer1 or connectedToServer2:
+        if addr[1] == 8001:
+            print(f"Server 1: {conn.recv(SIZE).decode(FORMAT)}")
+
+        if addr[1] == 8002:
+            print(f"Server 2: {conn.recv(SIZE).decode(FORMAT)}")
 
 
 def main():
-    print("[STARTING] Server is starting ...")
+    print("Starting server 3...")
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(ADDR)
     server.listen()
-    print(f"[LISTENING] Server is listening on {ip}")
-
-    while True:
+    server_status = True
+    print("Waiting for connections...")
+    while server_status:
         conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr))
+        thread = threading.Thread(target=handle_other_server, args=(conn, addr))
         thread.start()
 
 

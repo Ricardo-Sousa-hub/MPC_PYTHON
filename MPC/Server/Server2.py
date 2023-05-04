@@ -1,40 +1,40 @@
 import socket
-import threading
-import random
 import time
+import random
 
 IP = socket.gethostbyname(socket.gethostname())
-PORT = 6002
+PORT = 8002
 ADDR = (IP, PORT)
+SERVER3_ADDR = (IP, 8003)
 SIZE = 1024
 FORMAT = "utf-8"
-DISCONNECT_MSG = "Disconnected!"
+server_status = False
 
 
-def GerarSend(server):
-    rand = random.randint(0, 100)
-    print(rand)
-    data = str(rand).encode()
-    server.send(data)
+def GerarN():
+    return random.randint(0, 100)
 
 
 def main():
-    con = False
+    connected = False
     print("Starting server 2...")
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(ADDR)
-    while not con:
+    server_status = True
+    while server_status:
         try:
-            server.connect((IP, 6003))
-            print("Connection to server 3 sucessfull")
-            con = True
+            if not connected:
+                server.connect(SERVER3_ADDR)
+                print("Connection to server 3 successful")
+                connected = True
         except:
-            print("...", end="")
+            if not connected:
+                print("Trying to connect to server 3...")
+                time.sleep(5)
 
-    while True:
-        time.sleep(5)
-        thread = threading.Thread(target=GerarSend, args=(server,))
-        thread.start()
+        if connected:
+            server.send(str(GerarN()).encode(FORMAT))
+            time.sleep(5)
 
 
 if __name__ == "__main__":
