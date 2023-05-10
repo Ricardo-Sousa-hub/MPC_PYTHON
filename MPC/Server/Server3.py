@@ -31,6 +31,7 @@ def sendToServer(k, addr, conn):
     print(f"K sended to {server}")
     msg = conn.recv(SIZE).decode(FORMAT)
     print(msg)
+    main()
 
 
 def confirmCon(addr):
@@ -79,6 +80,7 @@ def handle_client(conn, addr):
         if k != 0:
             sendToServer(k, addr[1], conn)
             executed = True
+
     conn.close()
 
 

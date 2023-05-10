@@ -1,6 +1,7 @@
 import socket
 import time
 import random as r
+import threading
 
 IP = socket.gethostbyname(socket.gethostname())
 PORT = 8001
@@ -11,9 +12,20 @@ DISCONNECT_MSG = "3"
 
 ADDR_SERVER3 = (IP, 8003)
 ADDR_CLIENT = (IP, 8000)
+x = 0
+
+
+def handle_client(conn, addr):
+    global x
+    print("Conectado ao client")
+    conn.send(str(x).encode(FORMAT))
+    print("Valor x enviado ao client")
+    conn.close()
+    main()
 
 
 def main():
+    global x
     executed = False
     print("[STARTING] Server is starting ...")
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -41,8 +53,17 @@ def main():
             print(f"K + X = {x+k}")
             x = bin(x + k)
             print(x)
-
             executed = True
+
+        server.close()
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.bind(ADDR)
+        server.listen()
+        print("Server 1 a procura do client...")
+        while True:
+            conn, addr = server.accept()
+            thread = threading.Thread(target=handle_client, args=(conn, addr))
+            thread.start()
 
 
 if __name__ == "__main__":
