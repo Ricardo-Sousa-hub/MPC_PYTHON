@@ -30,33 +30,33 @@ def escreverMenu():
 def analisarInput(x, y, op):
     if op == "1":
         if len(x) > len(y):
-            print("Server 1(X) > Server 2(Y)")
+            return "Server 1(X) > Server 2(Y)"
         if len(x) < len(y):
-            print("Server 2(Y) > Server 1(X)")
+            return "Server 2(Y) > Server 1(X)"
         if len(x) == len(y):
+            if x == y:
+                return "Server 1(x) = Server 2(y)"
             index = 0
             for i in range(2, len(x)-1):
                 if int(x[i]) > int(y[index]):
-                    print("Server 1(X) > Server 2(Y)")
-                    break
+                    return "Server 1(X) > Server 2(Y)"
                 if int(x[i]) < int(y[index]):
-                    print("Server 2(Y) > Server 1(X)")
-                    break
+                    return "Server 2(Y) > Server 1(X)"
                 index += 1
     else:
         if len(x) > len(y):
-            print("Server 2(Y) < Server 1(X)")
+            return "Server 2(Y) < Server 1(X)"
         if len(x) < len(y):
-            print("Server 1(X) < Server 2(Y)")
+            return "Server 1(X) < Server 2(Y)"
         if len(x) == len(y):
+            if x == y:
+                return "Server 1(x) = Server 2(y)"
             index = 0
             for i in range(2, len(x)-1):
                 if int(x[i]) > int(y[index]):
-                    print("Server 2(Y) < Server 1(X)")
-                    break
+                    return "Server 2(Y) < Server 1(X)"
                 if int(x[i]) < int(y[index]):
-                    print("Server 1(X) > Server 2(Y)")
-                    break
+                    return "Server 1(X) > Server 2(Y)"
                 index += 1
 
 
@@ -66,6 +66,7 @@ def main():
     global conS2
     global connected
     global y
+    op = ""
     while executing:
         conS1 = False
         conS2 = False
@@ -125,6 +126,7 @@ def main():
                 if msg.isalnum():
                     y = msg
                     print(f"MSG server 1: {y}")
+                    print("A aguardar por resposta do servidor 2...")
                     conS1 = False
             time.sleep(5)
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -148,7 +150,7 @@ def main():
                     print(f"MSG server 2: {y}")
                     conS2 = False
 
-            analisarInput(x, y, op)
+            print(analisarInput(x, y, op))
 
 
 if __name__ == "__main__":
