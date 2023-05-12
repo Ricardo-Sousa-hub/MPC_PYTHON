@@ -57,6 +57,44 @@ Estes valores são depois enviados para o cliente sendo que este compara bit a b
 ![alt text](./images/img4.png)
 Como podemos verificar, se apenas for iniciado o servidor 3, o cliente e um dos outros 2 servidores, o cliente não consegue interagir pois são necessários para além do servidor 3 e do cliente os servidores 1 e 2.
 
+## Como executar o projeto localmente
+Clone o projeto
+
+```bash
+  git clone https://github.com/Ricardo-Sousa-hub/1705109_SD_EI_2022-23.git
+```
+
+Entrar no diretório do projeto
+
+```bash
+  cd 1705109_SD_EI_2022-23/MPC
+```
+
+Executar o Server 3
+
+```bash
+  python Server3.py
+```
+
+
+Executar o Server 2
+
+```bash
+  python Server2.py
+```
+
+Executar o Server 1
+
+```bash
+  python Server1.py
+```
+
+Executar o Client
+
+```bash
+  python Client.py
+```
+
 ## 4. Conclusão
 // descrever brevemente o que se fez e o que faltou fazer
 
