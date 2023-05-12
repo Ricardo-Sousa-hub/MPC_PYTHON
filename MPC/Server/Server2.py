@@ -12,58 +12,79 @@ DISCONNECT_MSG = "3"
 
 ADDR_SERVER3 = (IP, 8003)
 ADDR_CLIENT = (IP, 8000)
+
 y = 0
+y1 = 0
 
+MIN = 1
+MAX = 100
 
-def handle_client(conn, addr):
-    global y
-    print("Conectado ao client")
-    conn.send(str(y).encode(FORMAT))
-    print("Valor y enviado ao client")
-    conn.close()
-    main()
+connected = False
+clientCon = False
 
 
 def main():
+    global connected
     global y
-    executed = False
-    print("[STARTING] Server is starting ...")
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(ADDR)
-    print("Trying to connect to server 3")
+    global y1
+    global clientCon
+    executing = True
+    while executing:
+        clientCon = False
+        connected = False
+        print("[STARTING] Server 2 is starting ...")
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.bind(ADDR)
+        print("Trying to connect to server 3...")
 
-    connected = False
-    while True:
-        try:
-            if not connected:
+        while not connected:
+            try:
                 server.connect(ADDR_SERVER3)
-                print("Connection to server 3 successful")
-                connected = True
-        except:
-            if not connected:
+                if not connected:
+                    connected = True
+            except:
                 print("Trying to connect to server 3...")
                 time.sleep(5)
+        print("Connected to server 3")
 
-        if connected and not executed:
-            k = int(server.recv(SIZE).decode(FORMAT))
-            server.send(("Server 2: K recebido").encode(FORMAT))
-            y = r.randint(0, 101)
-            print(f"Y -> Numero gerado aleatoriamente: {y}")
-            print(f"K: {k}")
-            print(f"K + X = {y+k}")
-            y = bin(y + k)
-            print(y)
-            executed = True
+        while connected:
+            k = server.recv(SIZE).decode(FORMAT)
+            if k != "null" and k != "":
+                print(f"K: {k}")
+                y = r.randint(MIN, MAX)
+                print(f"y: {y}")
+                server.send(DISCONNECT_MSG.encode(FORMAT))
+                y1 = y + int(k)
+                print(f"y1: {y1}")
+
+                connected = False
 
         server.close()
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.bind(ADDR)
+        print("Server 2 is listening...")
         server.listen()
-        print("Server 1 a procura do client...")
-        while True:
+
+        while not clientCon:
             conn, addr = server.accept()
-            thread = threading.Thread(target=handle_client, args=(conn, addr))
-            thread.start()
+            if addr[1] == 8000:
+                handle_con(conn, addr)
+
+
+def client(conn, addr):
+    global y1
+    conn.send(str(bin(y1)).encode(FORMAT))
+    print("Y1 sended to client...")
+
+
+def handle_con(conn, addr):
+    print("NEW CONNECTION")
+    global clientCon
+    print("Connected to client!")
+    client(conn, addr)
+    print("Closing connection to client...")
+    conn.close()
+    clientCon = True
 
 
 if __name__ == "__main__":
