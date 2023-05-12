@@ -15,6 +15,7 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 ### 2.1 A computação como serviço
 
 ### 2.2 O cliente em pedido
+#### Arquitetura
 ![alt text](./images/Arquitetura.svg)
 
 ### 2.3 Descrição do funcionamento
@@ -36,7 +37,7 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 - O cliente desconecta-se do servidor 1 e tenta conectar-se ao servidor 2;
 - O servidor 2 envia o valor em binário resultante da soma de Y+K para o cliente;
 - O cliente compara bit a bit, da esquerda para a direita até que um dos bit’s seja diferente. 
-
+#### Protocolo
 ![alt text](./images/Protocolo.svg)
 
 ## 3. Funcionamento do trabalho
