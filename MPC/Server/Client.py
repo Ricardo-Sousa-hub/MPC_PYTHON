@@ -1,6 +1,5 @@
 import socket
 import time
-import threading
 
 IP = socket.gethostbyname(socket.gethostname())
 PORT = 8000

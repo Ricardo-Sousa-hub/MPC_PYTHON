@@ -1,7 +1,6 @@
 import socket
 import threading
 import random as r
-import time
 
 IP = socket.gethostbyname(socket.gethostname())
 PORT = 8003
