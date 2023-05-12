@@ -102,5 +102,5 @@ Executar o Client
  - [1] paulo vieira EI_Leitura-10-Sockets em Python
  - https://www.youtube.com/watch?v=3QiPPX-KeSc&t=2s&ab_channel=TechWithTim
  - https://realpython.com/python-sockets/
- - [Documentação da socket](https://docs.python.org/3/library/socket.html)
+ - [Documentação da libraria socket](https://docs.python.org/3/library/socket.html)
 
