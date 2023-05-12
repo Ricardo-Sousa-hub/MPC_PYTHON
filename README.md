@@ -99,8 +99,8 @@ Executar o Client
 // descrever brevemente o que se fez e o que faltou fazer
 
 ## Bibliografia
-[1] paulo vieira EI_Leitura-10-Sockets em Python
-https://www.youtube.com/watch?v=3QiPPX-KeSc&t=2s&ab_channel=TechWithTim - YouTube
-https://realpython.com/python-sockets/
-https://docs.python.org/3/library/socket.html
+ - [1] paulo vieira EI_Leitura-10-Sockets em Python
+ - https://www.youtube.com/watch?v=3QiPPX-KeSc&t=2s&ab_channel=TechWithTim
+ - https://realpython.com/python-sockets/
+ - [Documentação da socket](https://docs.python.org/3/library/socket.html)
 
