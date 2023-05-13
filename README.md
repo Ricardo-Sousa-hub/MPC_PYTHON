@@ -57,7 +57,7 @@ Estes valores são depois enviados para o cliente sendo que este compara bit a b
 ![alt text](./images/img4.png)
 Como podemos verificar, se apenas for iniciado o servidor 3, o cliente e um dos outros 2 servidores, o cliente não consegue interagir pois são necessários para além do servidor 3 e do cliente os servidores 1 e 2.
 
-## Como executar o projeto localmente
+## 4. Como executar o projeto localmente
 Clone o projeto
 
 ```bash
@@ -95,7 +95,7 @@ Executar o Client
   python Client.py
 ```
 
-## 4. Conclusão
+## 5. Conclusão
 // descrever brevemente o que se fez e o que faltou fazer
 
 ## Bibliografia
