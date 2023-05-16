@@ -67,11 +67,13 @@ Na imagem acima é possível verificar que o servidor 1, o servidor 2 e o client
 ![alt text](./images/img2.png)
 A validação do input do utilizador consiste na verificação se o input se encontra entre 1 e 3 e se é realmente um número.
 
-![alt text](./images/img3.png)
-Ao ser introduzido o valor 1 no cliente, o servidor 3 irá gerar um valor K, neste caso 15, de seguida envia o valor K para o servidor 1 e para o servidor 2. O servidor 1 e o servidor 2 geram eles próprios um valor aleatório, no caso 19 e 41 respetivamente.
+![alt text](./images/image3.png)
+Ao ser introduzido o valor 1 no cliente, o servidor 3 irá gerar um valor K, neste caso 18, de seguida envia o valor K para o servidor 1 e para o servidor 2. O servidor 1 e o servidor 2 geram eles próprios um valor aleatório, no caso 22 e 54 respetivamente.
 O valor K é somado ao valor do x e ao valor y, sendo o resultado das somas convertido em binário.
-Estes valores são depois enviados para o cliente sendo que este compara bit a bi ambos os números de forma a descobrir qual o maior/menor.
+Estes valores são depois enviados para o servidor 4(imagem abaixo) sendo que este compara bit a bit ambos os números de forma a descobrir qual o maior/menor.
 
+![alt text](./images/imgA.png)
+Após obtermos o resultado, este é enviado para o client.
 
 ![alt text](./images/img4.png)
 Como podemos verificar, se apenas for iniciado o servidor 3, o cliente e um dos outros 2 servidores, o cliente não consegue interagir pois são necessários para além do servidor 3 e do cliente os servidores 1 e 2.
