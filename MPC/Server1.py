@@ -9,8 +9,8 @@ SIZE = 1024
 FORMAT = "utf-8"
 DISCONNECT_MSG = "3"
 
+ADDR_SERVER4 = (IP, 8004)
 ADDR_SERVER3 = (IP, 8003)
-ADDR_CLIENT = (IP, 8000)
 
 x = 0
 x1 = 0
@@ -19,17 +19,17 @@ MIN = 1
 MAX = 100
 
 connected = False
-clientCon = False
+server4 = False
 
 
 def main():
     global connected
     global x
     global x1
-    global clientCon
+    global server4
     executing = True
     while executing:
-        clientCon = False
+        server4 = False
         connected = False
         print("[STARTING] Server 1 is starting ...")
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -61,29 +61,20 @@ def main():
         server.close()
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.bind(ADDR)
-        print("Server 1 is listening...")
-        server.listen()
+        print("Server 1 is trying to connect to server 4...")
 
-        while not clientCon:
-            conn, addr = server.accept()
-            if addr[1] == 8000:
-                handle_con(conn, addr)
+        while not server4:
+            try:
+                server.connect(ADDR_SERVER4)
+                if not server4:
+                    server4 = True
+            except:
+                print("Trying to connect to server 4...")
+                time.sleep(5)
+        print("Connected to server 4")
 
-
-def client(conn, addr):
-    global x1
-    conn.send(str(bin(x1)).encode(FORMAT))
-    print("x1 sended to client...")
-
-
-def handle_con(conn, addr):
-    print("NEW CONNECTION")
-    global clientCon
-    print("Connected to client!")
-    client(conn, addr)
-    print("Closing connection to client...")
-    conn.close()
-    clientCon = True
+        server.send(str(bin(x1)).encode(FORMAT))
+        server.close()
 
 
 if __name__ == "__main__":

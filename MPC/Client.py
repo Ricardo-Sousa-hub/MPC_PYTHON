@@ -7,9 +7,8 @@ ADDR = (IP, PORT)
 SIZE = 1024
 FORMAT = "utf-8"
 DISCONNECT_MSG = "3"
-ADDR_SERVER1 = (IP, 8001)
-ADDR_SERVER2 = (IP, 8002)
 ADDR_SERVER3 = (IP, 8003)
+ADDR_SERVER4 = (IP, 8004)
 
 x = "null"
 y = "null"
@@ -19,6 +18,7 @@ y = "null"
 connected = False
 conS1 = False
 conS2 = False
+conS4 = False
 
 
 def escreverMenu():
@@ -27,49 +27,35 @@ def escreverMenu():
     print("3 - Disconnect")
 
 
-def analisarInput(x, y, op):
-    if op == "1":
-        if len(x) > len(y):
-            return "Server 1(X) > Server 2(Y)"
-        if len(x) < len(y):
-            return "Server 2(Y) > Server 1(X)"
-        if len(x) == len(y):
-            if x == y:
-                return "Server 1(x) = Server 2(y)"
-            index = 0
-            for i in range(2, len(x)-1):
-                if int(x[i]) > int(y[index]):
-                    return "Server 1(X) > Server 2(Y)"
-                if int(x[i]) < int(y[index]):
-                    return "Server 2(Y) > Server 1(X)"
-                index += 1
+def resultado(op, res):
+    if op == 1:
+        if "<" in res:
+            resultado1 = res.split("<")
+            final = resultado1[1] + " > " + resultado1[0]
+            return final
+        else:
+            return res
     else:
-        if len(x) > len(y):
-            return "Server 2(Y) < Server 1(X)"
-        if len(x) < len(y):
-            return "Server 1(X) < Server 2(Y)"
-        if len(x) == len(y):
-            if x == y:
-                return "Server 1(x) = Server 2(y)"
-            index = 0
-            for i in range(2, len(x)-1):
-                if int(x[i]) > int(y[index]):
-                    return "Server 2(Y) < Server 1(X)"
-                if int(x[i]) < int(y[index]):
-                    return "Server 1(X) > Server 2(Y)"
-                index += 1
+        if ">" in res:
+            resultado1 = res.split(">")
+            final = resultado1[1] + " < " + resultado1[0]
+            return final
+        else:
+            return res
 
 
 def main():
     executing = True
     global conS1
     global conS2
+    global conS4
     global connected
     global y
     op = ""
     while executing:
         conS1 = False
         conS2 = False
+        conS4 = False
         connected = False
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client.bind(ADDR)
@@ -99,58 +85,33 @@ def main():
                     executing = False
                 else:
                     msg = client.recv(SIZE).decode(FORMAT)
-                    if msg == "Wait for server 1 and 2 to be connected":
+                    if msg == "Wait for server 4 to be connected":
                         print(msg)
                     else:
                         client.send(DISCONNECT_MSG.encode(FORMAT))
                         client.close()
 
                         connected = False
+
         if executing:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             client.bind(ADDR)
 
-            #Server 2
-            while not conS1:
+            #receber resultado do servidor 4
+
+            while not conS4:
                 try:
-                    client.connect(ADDR_SERVER1)
-                    if not conS1:
-                        conS1 = True
+                    client.connect(ADDR_SERVER4)
+                    if not conS4:
+                        conS4 = True
                 except:
-                    print("Trying to connect to server 1...")
+                    print("Trying to connect to server 4")
                     time.sleep(5)
-            print("Connected to Server 1!")
-
-            while conS1:
+            print("Connected to server 4")
+            while conS4:
                 msg = client.recv(SIZE).decode(FORMAT)
-                if msg.isalnum():
-                    y = msg
-                    print(f"MSG server 1: {y}")
-                    print("A aguardar por resposta do servidor 2...")
-                    conS1 = False
-            time.sleep(5)
-            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client.bind(ADDR)
-
-            #Server 1
-            while not conS2:
-                try:
-                    client.connect(ADDR_SERVER2)
-                    if not conS2:
-                        conS2 = True
-                except:
-                    print("Trying to connect to server 2...")
-                    time.sleep(5)
-            print("Connected to Server 2!")
-
-            while conS2:
-                msg = client.recv(SIZE).decode(FORMAT)
-                if msg.isalnum():
-                    y = msg
-                    print(f"MSG server 2: {y}")
-                    conS2 = False
-
-            print(analisarInput(x, y, op))
+                print(resultado(op, msg))
+                conS4 = False
 
 
 if __name__ == "__main__":

@@ -78,7 +78,7 @@ def client(conn, addr):
                 print("=" * 20)
                 clientCon = False
             else:
-                conn.send(("Wait for server 1 and 2 to be connected").encode(FORMAT))
+                conn.send(("Wait for server 4 to be connected").encode(FORMAT))
 
 
 def server1(conn, addr):
