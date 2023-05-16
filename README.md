@@ -16,9 +16,19 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 ![alt text](./images/Arquitetura.svg)
 
 ### 2.1 A computação como serviço
-
+Os servidores 1 e 2 conectam-se com o servidor 3 através de sockets, após as conexões serem bem sucedidas o servidor 3 recebe o pedido do cliente dando início ao processo.
+O servidor 3 gera um valor K e envia esse mesmo valor para os servidores 1 e 2.
+Os servidores 1 e 2 geram um valor x e y respetivamente, sendo posteriormente adicionado a esse x e a esse y o valor k.
+Após a adição, os valores resultantes das somas são convertidos para binário.
+Os servidores 1 e 2 desconectam-se do servidor 3 e tentam conectar-se com o servidor 4.
+Após a conexão bem sucedida os resultados das somas são enviados para o servidor 4.
+Os servidores 1 e 2 desconectam-se do servidor 4 e reconectam-se ao servidor 3.
+Por sua vez, o servidor 4 efetua a computação do resultado através da comparação bit a bit até encontrar o primeiro bit distinto.
+Por fim, o servidor 4 transmite o resultado para o cliente.
 ### 2.2 O cliente em pedido
-
+O cliente conecta-se ao servidor 3 sendo apresentado o menu de opções ao utilizador.
+Após a escolha de um das 3 opções disponíveis o cliente envia a opção ao servidor 3.
+Por fim desconecta-se do servidor 3 e conecta-se ao servidor 4 recebendo  
 ### 2.3 Descrição do funcionamento
 
 - O servidor 3 começa a ouvir na porta 8003;
