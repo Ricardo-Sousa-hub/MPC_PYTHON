@@ -12,12 +12,12 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 
 ## 2. Implementação do trabalho
 
+#### Arquitetura
+![alt text](./images/Arquitetura.svg)
+
 ### 2.1 A computação como serviço
 
 ### 2.2 O cliente em pedido
-
-#### Arquitetura
-![alt text](./images/Arquitetura.svg)
 
 ### 2.3 Descrição do funcionamento
 
@@ -31,13 +31,14 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 - Os servidores 1 e 2 geram cada um 1 valor aleatório (Server 1 gera um valor X, Server 2 gera um valor Y);
 - O valor K é somado aos respectivos valores aleatórios;
 - O resultado da soma de X+K e Y+K são convertidos para binário;
-- O servidor 1 é desconectado do Servidor 3 e fica a escutar;
-- O servidor 2 é desconectado do Servidor 3 e fica a escutar;
-- O cliente conecta-se ao servidor 1;
-- O servidor 1 envia o valor em binário resultante da soma de X+K para o cliente;
-- O cliente desconecta-se do servidor 1 e tenta conectar-se ao servidor 2;
-- O servidor 2 envia o valor em binário resultante da soma de Y+K para o cliente;
-- O cliente compara bit a bit, da esquerda para a direita até que um dos bit’s seja diferente. 
+- O servidor 1 é desconectado do Servidor 3 e tenta conectar-se ao servidor 4;
+- O servidor 2 é desconectado do Servidor 3 e tenta conectar-se ao servidor 4;
+- O cliente conecta-se ao servidor 4;
+- O servidor 1 envia o valor em binário resultante da soma de X+K para o servidor 4;
+- O servidor 2 envia o valor em binário resultante da soma de Y+K para o servidor 4;
+- O servidor 4 compara bit a bit, da esquerda para a direita até que um dos bit’s seja diferente;
+- O servidor 4 envia ao cliente o resultado.
+
 #### Protocolo[1]
 - Servidor 3 gera aleatoriamente um valor k inteiro
 - Servidor 3 entrega k ao Servidor 1
