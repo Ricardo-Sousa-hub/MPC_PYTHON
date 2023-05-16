@@ -15,6 +15,7 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 ### 2.1 A computação como serviço
 
 ### 2.2 O cliente em pedido
+
 #### Arquitetura
 ![alt text](./images/Arquitetura.svg)
 
@@ -38,7 +39,14 @@ Neste trabalho iremos implementar um protocolo MPC (Multi-Party Protocol) onde 2
 - O servidor 2 envia o valor em binário resultante da soma de Y+K para o cliente;
 - O cliente compara bit a bit, da esquerda para a direita até que um dos bit’s seja diferente. 
 #### Protocolo[1]
-![alt text](./images/Protocolo.svg)
+- Servidor 3 gera aleatoriamente um valor k inteiro
+- Servidor 3 entrega k ao Servidor 1
+- Servidor 3 entrega k ao Servidor 2 
+- Servidor 1 recebe x (input) e k (a partir do Servidor 3). Cria x’1= b(x+k), b(x+k) é o binário de x+k. Servidor 1 entrega x’1 ao Servidor 4
+- Servidor 2 recebe y (input) e k (a partir do Servidor 3). Cria y’1= b(y+k), b(y+k) é o binário de y+k. Servidor 2 entrega y’1 ao Servidor 4
+- Servidor 4 recebe x’1 de Servidor 1 e y’1 de Servidor 2. Compara bit a bit x’1 com y’1 da esquerda para a direita.
+Ou encontra dois bits distintos e nesse caso, o primeiro bit distinto maior indica o inteiro maior. Ou não
+encontra e nesse caso os inteiros são iguais. Emite o resultado como output.
 
 ## 3. Funcionamento do trabalho
 
