@@ -110,6 +110,12 @@ Executar o Server 1
   python Server1.py
 ```
 
+Executar o Server 4
+
+```bash
+  python Server4.py
+```
+
 Executar o Client
 
 ```bash
@@ -117,7 +123,10 @@ Executar o Client
 ```
 
 ## 5. Conclusão
-// descrever brevemente o que se fez e o que faltou fazer
+Neste trabalho foi possível estudar como desenvolver um protocolo MPC e como implementá-lo com o uso dos sockets em python.
+Gostava de ter feito uma interface GUI para o cliente de modo a tornar a aplicação mais user friendly apesar da sua simplicidade.
+Este trabalho permitiu-me adquirir novos conhecimentos tanto no uso de sockets em python como em protocolos MPC.
+Apesar de alguns bugs, considero que o trabalho foi bem sucedido e bem executado.
 
 ## Bibliografia
  - [1] paulo vieira EI_Leitura-10-Sockets em Python
