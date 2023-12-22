@@ -130,4 +130,3 @@ Apesar de alguns bugs, considero que o trabalho foi bem sucedido e bem executado
  - https://www.youtube.com/watch?v=3QiPPX-KeSc&t=2s&ab_channel=TechWithTim
  - https://realpython.com/python-sockets/
  - [Documentação da libraria socket](https://docs.python.org/3/library/socket.html)
-
